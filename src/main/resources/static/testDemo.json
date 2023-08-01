@@ -1,0 +1,23 @@
+{
+        "items": [{
+                "stockCode": "AGPPF.US",
+                "ticker": "AGPPF",
+                "cname": "ANGLO AMERICAN PLATINUM LTD",
+                "investLevelDesc": null,
+                "investDirectionDesc": null,
+                "pxLast": null,
+                "targetPrice": null,
+                "valueDate": null,
+                "tradeCurrency": "USD",
+                "tradeCurrencyCName": null,
+                "reportInvestLevel": null,
+                "reportInvestDirection": null,
+                "topPicked": false,
+                "tags": [],
+                "fullNameCn": "英美铂业有限公司",
+                "tickerAlias": null,
+                "stockCodeAlias": null
+            }
+        ]
+
+}

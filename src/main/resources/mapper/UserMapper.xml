@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.powerAdmin.mapper.UserMapper">
+    <insert id="inserta" parameterType="com.example.powerAdmin.request.SearchSysUserRequest">
+        insert into user (user_id) values (100)
+    </insert>
+</mapper>
