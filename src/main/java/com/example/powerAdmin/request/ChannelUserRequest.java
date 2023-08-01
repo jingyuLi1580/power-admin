@@ -72,7 +72,7 @@ public class ChannelUserRequest {
     /**
      * 创建日期
      */
-    @ExcelProperty(value = "创建日期",index = 8)
+//    @ExcelProperty(value = "创建日期",index = 8)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @ExcelIgnore
     private LocalDateTime createTime;

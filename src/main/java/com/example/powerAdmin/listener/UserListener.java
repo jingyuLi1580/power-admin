@@ -48,7 +48,7 @@ public class UserListener extends AnalysisEventListener<ChannelUserRequest>  {
     @Override
     public void invoke(ChannelUserRequest userRequest, AnalysisContext analysisContext) {
         //行号
-        Integer lineNumber = analysisContext.readRowHolder().getRowIndex()-1;
+        Integer lineNumber = analysisContext.readRowHolder().getRowIndex();
         if (!Objects.isNull(userRequest) && lineNumber != 0) {
             log.info("导入第{}行数据为，{}",lineNumber, JSON.toJSON(userRequest));
             //对入参必填字段做判空处理
@@ -68,7 +68,7 @@ public class UserListener extends AnalysisEventListener<ChannelUserRequest>  {
         }
         Map<String,Integer> map = userService.insChannelUser(datas);
         log.info("导入成功条数为，{}，失败条数为，{}",map.get("successNo"),map.get("failNo"));
-        result = "导入成功条数为，"+map.get("successNo")+"，失败条数为，{}"+map.get("failNo");
+        result = "导入成功条数为，"+map.get("successNo")+"，失败条数为，"+map.get("failNo");
         // 存储完成清理 list
         datas.clear();
     }

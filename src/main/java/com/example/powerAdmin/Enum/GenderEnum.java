@@ -16,7 +16,7 @@ public enum GenderEnum {
 
     public static Integer convert(String value){
         for (GenderEnum genderEnum : GenderEnum.values()) {
-            if (genderEnum.getMessage() == value) {
+            if (genderEnum.getMessage().equals(value)) {
                 return genderEnum.getCode();
             }
         }

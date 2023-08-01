@@ -69,8 +69,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
                     .like(StringUtils.isNotEmpty(item.getGender().toString()),User::getGender,item.getGender())
                     .between(Objects.isNull(item.getCreateTime()), User::getCreateTime, item.getCreateTime(), new Date()));
             if (Objects.isNull(user)) {
-                BeanUtils.copyProperties(item,User.class);
-                userMapper.insert(user);
+                User user1 = BeanUtil.map2obj(item, User.class);
+                userMapper.insert(user1);
                 successNo++;
             } else {
                 failNo++;
