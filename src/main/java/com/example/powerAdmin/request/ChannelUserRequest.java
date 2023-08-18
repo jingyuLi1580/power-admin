@@ -2,6 +2,7 @@ package com.example.powerAdmin.request;
 
 
 import com.alibaba.excel.annotation.ExcelIgnore;
+import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -20,8 +21,10 @@ import java.time.LocalDateTime;
  * @ExcelIgnore EasyExcel默认所有字段都会和excel去匹配，加了这个注解会忽略该字段
  * @DateTimeFormat 日期转换，用String去接收excel日期格式的数据会调用这个注解。里面的value参照java.text.SimpleDateFormat
  * @NumberFormat 数字转换，用String去接收excel数字格式的数据会调用这个注解。里面的value参照java.text.DecimalFormat
+ * @ExcelIgnoreUnannotated 注解的意思就是在导入导出的时候忽略掉未加@ExcelProperty注解的字段
  */
 @Data
+@ExcelIgnoreUnannotated
 public class ChannelUserRequest {
 
     /**
