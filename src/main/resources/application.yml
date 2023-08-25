@@ -21,6 +21,13 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+  #QQ邮箱邮件发送服务配置（固定写法）
+  mail:
+    host: smtp.qq.com
+    port: 587
+    # 配置个人QQ账户和密码（密码是加密后的授权码）
+    username: 956291084@qq.com
+    password: paubppgqtaetbgac
   mvc:
     servlet:
       load-on-startup: 1
@@ -41,3 +48,4 @@ mybatis-plus:
 identity:
   name: lijingyu
   age: boy
+
