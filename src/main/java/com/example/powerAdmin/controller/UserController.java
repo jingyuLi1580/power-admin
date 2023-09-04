@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import springfox.documentation.spring.web.json.Json;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -120,23 +121,22 @@ public class UserController {
 
     @GetMapping("exportData")
     @ApiOperation(value="导出用户信息")
-    public ResultInfo exportData() throws FileNotFoundException {
-        FileOutputStream fileOutputStream = new FileOutputStream("D://Easyexcel导出.xlsx");
-
-        List<User> list = userService.list(new LambdaQueryWrapper<User>()
-                .eq(User::getUserStatus, 1)
-                .eq(User::getDeleted, false));
+    public ResultInfo exportData(HttpServletResponse response){
         try {
-            //这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系
-            String fileName = URLEncoder.encode("Easyexcel导出", "utf-8");
-        } catch (UnsupportedEncodingException e) {
+            String fileName = "系统提示词埋点导出.xlsx";
+            response.setHeader("content-disposition", "attachment;filename="+ URLEncoder.encode(fileName, "UTF-8"));
+            List<User> list = userService.list(new LambdaQueryWrapper<User>()
+                    .eq(User::getUserStatus, 1)
+                    .eq(User::getDeleted, false));
+            //这个实现方式非常简单直接，使用EasyExcel的write方法将查询到的数据进行处理，以流的形式写出即可
+            EasyExcel.write(response.getOutputStream(), User.class)//对应的导出实体类
+                    .sheet("提示词")//导出sheet页名称
+                    .doWrite(list); //查询获取的数据集合List<T>，转成excel
+            response.getOutputStream().close();
+        } catch (Exception e) {
             e.printStackTrace();
+            log.error("系统提示词埋点导出异常，{}", e);
         }
-        //这个实现方式非常简单直接，使用EasyExcel的write方法将查询到的数据进行处理，以流的形式写出即可
-        EasyExcel.write(fileOutputStream, User.class)//对应的导出实体类
-                .excelType(ExcelTypeEnum.XLSX)//excel文件类型，包括CSV、XLS、XLSX
-                .sheet("用户列表")//导出sheet页名称
-                .doWrite(list); //查询获取的数据集合List<T>，转成excel
         return new ResultInfo(RespCode.SUCCESS);
     }
 }
