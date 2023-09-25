@@ -3,7 +3,9 @@ package com.example.powerAdmin.controller;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelReader;
+import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.metadata.Sheet;
+import com.alibaba.excel.metadata.Table;
 import com.alibaba.excel.read.metadata.ReadSheet;
 import com.alibaba.excel.support.ExcelTypeEnum;
 import com.alibaba.fastjson.JSON;
@@ -139,5 +141,39 @@ public class UserController {
         }
         return new ResultInfo(RespCode.SUCCESS);
     }
+
+//    @GetMapping("exportData")
+//    @ApiOperation(value="导出批量用户信息")
+//    public ResultInfo dataExport300w(HttpServletResponse response){
+//        try {
+////            String fileName = "系统提示词埋点导出.xlsx";
+////            response.setHeader("content-disposition", "attachment;filename="+ URLEncoder.encode(fileName, "UTF-8"));
+////            List<User> list = userService.list(new LambdaQueryWrapper<User>()
+////                    .eq(User::getUserStatus, 1)
+////                    .eq(User::getDeleted, false));
+////            //这个实现方式非常简单直接，使用EasyExcel的write方法将查询到的数据进行处理，以流的形式写出即可
+////            EasyExcel.write(response.getOutputStream(), User.class)//对应的导出实体类
+////                    .sheet("提示词")//导出sheet页名称
+////                    .doWrite(list); //查询获取的数据集合List<T>，转成excel
+////            response.getOutputStream().close();
+//            OutputStream outputStream = null;
+//            try {
+//                long startTime = System.currentTimeMillis();
+//                System.out.println("导出开始时间 = " + startTime);
+//                outputStream = response.getOutputStream();
+//                ExcelWriter excelWriter = new ExcelWriter(outputStream, ExcelTypeEnum.XLSX);
+//                String fileName = new String(("excel100w").getBytes(), "UTF-8");
+//                new Table();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            log.error("系统提示词埋点导出异常，{}", e);
+//        }
+//        return new ResultInfo(RespCode.SUCCESS);
+//    }
+
 }
 
