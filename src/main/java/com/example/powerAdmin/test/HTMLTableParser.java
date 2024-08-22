@@ -10,6 +10,9 @@ import org.jsoup.select.Elements;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * 解析HTML标签
+ */
 public class HTMLTableParser {
 
     public static void main(String[] args) {
