@@ -1,9 +1,7 @@
-package com.example.powerAdmin.Enum;
+package com.example.powerAdmin.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
-import java.math.BigDecimal;
 
 @Getter
 @AllArgsConstructor
