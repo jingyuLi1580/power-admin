@@ -13,6 +13,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.example.powerAdmin.common.IdentityCommon;
 import com.example.powerAdmin.common.RespCode;
 import com.example.powerAdmin.common.ResultInfo;
+import com.example.powerAdmin.entity.EsUser;
 import com.example.powerAdmin.entity.Permissions;
 import com.example.powerAdmin.entity.User;
 import com.example.powerAdmin.listener.ExcelListener;
@@ -23,6 +24,7 @@ import com.example.powerAdmin.request.Promat;
 import com.example.powerAdmin.request.SearchSysUserRequest;
 import com.example.powerAdmin.response.SearchUserVo;
 import com.example.powerAdmin.service.IUserService;
+import com.example.powerAdmin.service.impl.EsUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -59,6 +61,9 @@ public class UserController {
 
     @Resource
     IUserService userService;
+
+    @Autowired
+    private EsUserService esUserService;
 
     @PostMapping("search")
     @ApiOperation(value="查询用户信息")
@@ -140,6 +145,28 @@ public class UserController {
             log.error("系统提示词埋点导出异常，{}", e);
         }
         return new ResultInfo(RespCode.SUCCESS);
+    }
+
+
+
+    @PostMapping("/createUser")
+    public Object createUser(@RequestBody EsUser esUser) {
+        return esUserService.saveUser(esUser);
+    }
+
+    @GetMapping("/getAllUsers")
+    public Iterable<EsUser> getAllUsers() {
+        return esUserService.findAllUsers();
+    }
+
+    @GetMapping("/getUserById")
+    public EsUser getUserById(@RequestParam String id) {
+        return esUserService.findUserById(id);
+    }
+
+    @DeleteMapping("/deleteUser")
+    public void deleteUser(@RequestParam String id) {
+        esUserService.deleteUser(id);
     }
 
 //    @GetMapping("exportData")
